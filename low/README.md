@@ -10,7 +10,7 @@ My details are as follows:
   <li><b>Hostname:</b> http://dvwa/</li>
   <li><b>DVWA directory:</b> /dvwa/</li>
   <li><b>Full root directory:</b> http://dvwa/dvwa/</li>
-  <li><b>Kali working directory:</b> /root/Desktop</li>
+  <li><b>Kali working directory:</b> /root/Desktop/</li>
 </ol>
 
 I'll be listing paths in a relative sense. For example, I will reference the full URL of <b>http://dvwa/dvwa/login.php</b> as <b>/dvwa/login.php</b>. 
