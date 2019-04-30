@@ -1,4 +1,4 @@
-# DVWA
+# dvwa-guide-2019
 Solutions and various notes for the Damn Vulnerable Web App (DVWA) pentesting tool, intended to be accurate as of 04/30/2019.
 
 Please note the following restrictions and caveats. Continuing to read or interact with this repo in any manner signifies consent to these terms.
