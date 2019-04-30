@@ -1,7 +1,7 @@
 # dvwa-guide-2019
 Solutions and various notes for the Damn Vulnerable Web App (DVWA) pentesting tool, intended to be accurate as of 04/30/2019.
 
-Please note the following restrictions and caveats. Continuing to read or interact with this repo in any manner signifies consent to these terms.
+<b><i>Please note the following restrictions and caveats. Continuing to read or interact with this repo in any manner signifies consent to these terms.</i></b>
 
 1) I will always assume you have the following already set up:
   a) A fully-updated version of Kali, with Firefox, Burp Suite, and whatever other tools you find interesting configured appropriately. I used Kali 4.19.0 x64 in a VM.
