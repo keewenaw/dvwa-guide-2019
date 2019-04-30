@@ -7,10 +7,10 @@ This folder is for the "easy mode" challenges, where the app's Security Level is
 <br><br>
 My details are as follows:
 <ol type="1">
-  <li><b>Hostname:</br> http://dvwa/</li>
-  <li><b>DVWA directory:</br> /dvwa/</li>
-  <li><b>Full root directory:</br> http://dvwa/dvwa/</li>
-  <li><b>Kali working directory:</br> /root/Desktop</li>
+  <li><b>Hostname:</b> http://dvwa/</li>
+  <li><b>DVWA directory:</b> /dvwa/</li>
+  <li><b>Full root directory:</b> http://dvwa/dvwa/</li>
+  <li><b>Kali working directory:</b> /root/Desktop</li>
 </ol>
 
 I'll be listing paths in a relative sense. For example, I will reference the full URL of <b>http://dvwa/dvwa/login.php</b> as <b>/dvwa/login.php</b>. 
