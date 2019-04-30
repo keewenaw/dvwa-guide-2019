@@ -2,7 +2,7 @@ If you haven't already, please review my terms and conditions <a href=https://gi
 
 My details are as follows:
 <ol type="a">
-  <li>Hostname: http://dwva/</li>
+  <li>Hostname: http://dvwa/</li>
   <li>DVWA directory: /dvwa/</li>
   <li>Full root directory: http://dvwa/dvwa/</li>
 </ol>
