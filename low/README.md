@@ -6,10 +6,11 @@
 This folder is for the "easy mode" challenges, where the app's Security Level is set to "low". This means that there are no security measures in place at all. You can set this in <b>/dvwa/security.php</b>.
 <br><br>
 My details are as follows:
-<ol type="a">
-  <li>Hostname: http://dvwa/</li>
-  <li>DVWA directory: /dvwa/</li>
-  <li>Full root directory: http://dvwa/dvwa/</li>
+<ol type="1">
+  <li><b>Hostname:</br> http://dvwa/</li>
+  <li><b>DVWA directory:</br> /dvwa/</li>
+  <li><b>Full root directory:</br> http://dvwa/dvwa/</li>
+  <li><b>Kali working directory:</br> /root/Desktop</li>
 </ol>
 
 I'll be listing paths in a relative sense. For example, I will reference the full URL of <b>http://dvwa/dvwa/login.php</b> as <b>/dvwa/login.php</b>. 
