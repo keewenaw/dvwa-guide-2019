@@ -14,7 +14,7 @@
 
 Okay, let's navigate to the challenge. We are presented with a classic username/password web form. 
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/bruteprompt.png" width="250">
+<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/bruteprompt.png" width="500">
 
 We're obviously assuming that we don't know the administrator's password, though I know we do. That's what we used to log into DVWA, after all. However, for convenience, we won't try and brute force the administrator's username, which is "admin". I tried it for fun, but it took way too much time and I feel that's not what the spirit of the challenge is. So our objective is to find the password for "admin".
 
@@ -101,7 +101,7 @@ So let's examine that weird white box (or actual image if your setup was <s>bett
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/bruteothers.png" width="500">
 
-Other possible attack vectors include uploading a reverse shell in Challenge 4, SQL injection, or passing in a wordlist of all possible usernames and brute forcing that at the same time as the passwords.
+Other possible attack vectors include uploading a reverse shell in <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/Challenge%204:%20File%20Inclusion.md">Challenge 4</a>, SQL injection, or passing in a wordlist of all possible usernames and brute forcing that at the same time as the passwords.
 
 Regardless of how you found them, we find out that the other four usernames are:
 <ul>
