@@ -24,7 +24,7 @@ All the same, let's alternate between clicking the "Generate" button and viewing
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/weakmultiple.png" width="500">
 
-<b>dvwaSession</b> become "2", then "3", then "4", <i>ad infinitum</i>.
+<b>dvwaSession</b> becomes "2", then "3", then "4", <i>ad infinitum</i>.
 
 So there's our answer. <b>dvwaSession</b> gets initialized as "1", then gets incremented by 1 each time you click "Generate". If there were other users, you'd keep following the above process, either manually or via a script of some sort. If you found a gap, something like <b>dvwaSession</b> going from "4" to "6", you could deduce another user has <b>dvwaSession=5</b> and plan further attacks from there (maybe use a cross-site scripting vulnerability to steal their cookie?).
 
