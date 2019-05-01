@@ -97,7 +97,7 @@ We got the success message. Nice! But we're not quite done yet ...
 
 <h3><b>The Other Accounts</b></h3>
 
-So let's examine that weird white box (or actual image if your setup was <s>better</s>different than mine) below the success message. If we inspect that element as before, we see an interesting line: <b>&#60;img src="./hackable/users/admin.jpg"&#62;</b>. We can logically assume if we visit that <b>/users/</b> directory, we may find the other usernames in the format "[username].jpg". So after some playing around with the URL in Firefox, we find the directory.
+So let's examine that weird white box (or actual image if your setup was <s>better</s>different than mine) below the success message. If we inspect that element as before, we see an interesting line: <b>&#60;img src="./hackable/users/admin.jpg"&#62;</b>. We can logically assume if we try to visit that <b>/users/</b> directory, we may find the other usernames in the format "[username].jpg". So after some playing around with the URL in Firefox, we find the directory.
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/bruteothers.png" width="500">
 
