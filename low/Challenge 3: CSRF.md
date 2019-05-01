@@ -22,7 +22,7 @@ Interesting, there's no real verification required. We don't need to know the ol
 
 Now let's look at the URL, as shown in our browser:
 
-http://dvwa/dvwa/vulnerabilities/csrf/?password_new=newpw&password_conf=newpw&Change=Change#
+http&#58;//dvwa/dvwa/vulnerabilities/csrf/?password_new=newpw&password_conf=newpw&Change=Change#
 
 We don't see encryption or masking of the password in the URL. 
 
@@ -34,7 +34,7 @@ I wonder what we can do with this?
 
 The attack is actually trivial to implement. All we need to do is craft a new URL with whatever we want the password to be:
 
-<b>http://dvwa/dvwa/vulnerabilities/csrf/?password_new=</b>[your_new_password]<b>&password_conf=</b>[your_new_password]<b>&Change=Change#</b>
+<b>http&#58;//dvwa/dvwa/vulnerabilities/csrf/?password_new=</b>[your_new_password]<b>&password_conf=</b>[your_new_password]<b>&Change=Change#</b>
 
 If we can get the "admin" user to visit the malicious URL, the password will be changed to whatever we want. We don't need to actually type in anything to the vulnerable form.
 
@@ -50,7 +50,11 @@ And logging back in with the hacked password ...
 
 It works! Challenge complete.
 
-Note: In the real world, when you're conducting a pentest, you'd use social engineering techniques to get a user to click the malicious link for you. Common techniques include spear-phishing emails, IMs, and texts. If the user is authenticated to the vulnerable application, the attack will succeed and the password will be reset without the user knowing. If you want to test this, you'll need to create a new user account that will send the malicious link to the "admin" user via email or a similar method. You'd then want the "admin" user to authenticate to the app and then click the link. It's somewhat luck-based, as it relies on the user:
+<h3><b>In the Real World ...</b></h3>
+
+In the real world, when you're conducting a pentest, you'd use social engineering techniques to get a user to click the malicious link for you. Common techniques include spear-phishing emails, IMs, and texts. If the user is authenticated to the vulnerable application, the attack will succeed and the password will be reset without the user knowing. If you want to test this, you'll need to create a new user account that will send the malicious link to the "admin" user via email or a similar method. You'd then want the "admin" user to authenticate to the app and then click the link.
+
+Social engineering attacks are somewhat luck-based, as it relies on the user:
 <ol type="1">
   <li>Having an active session on the vulnerable app;</li>
   <li>Getting your message;</li>
