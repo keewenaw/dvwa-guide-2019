@@ -57,7 +57,7 @@ Let's try it out.
 
 Success! Line 1 shows the output of <b>whoami</b>, "daemon". Line 4 shows the output of <b>hostname</b>, which I had specified as "ubuntuwebtest". Our hostname also leaks some useful information, that we're running Ubuntu on our web server. You can test this result as you see fit, but I won't show that here. 
 
-If we wanted cleaner output, we could try something like:
+If we wanted cleaner output, we could change how we chain the commands:
 
 <b>127.0.0.1; echo "\nUser: $(whoami)"; echo "Hostname: $(hostname)"</b>
 
