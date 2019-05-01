@@ -98,6 +98,6 @@ Let's try it out! Let's submit the URL and check our netcat listener.
 
 At this point, it's game over. All we need to do is navigate to the "fi.php" file mentioned above and view the source code.
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/firficomplete.png" width="500">
+<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/firfisuccess.png" width="500">
 
 There's #3! We have all five quotes, and the challenge is complete. Well done!
