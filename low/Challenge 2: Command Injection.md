@@ -65,6 +65,6 @@ If we wanted cleaner output, we could try something like:
 
 If we want to be thorough, we could verify our answer on the test web server itself:
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/execverify.png" width="500">
+<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/execconfirm.png" width="500">
 
 We did it! Challenge complete.
