@@ -63,4 +63,4 @@ Social engineering attacks are somewhat luck-based, as it relies on the user:
   <li>(Ideally) Informing you the link didn't work in the way you pretended it would.</li>
 </ol>
 
-That's why I'm not showing you how to do it here. Consider it extra credit :)
+It's never guaranteed to work. That's why I'm not showing you how to do it here. Consider it extra credit if you want to try anyway :)
