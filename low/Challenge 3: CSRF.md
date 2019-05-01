@@ -22,7 +22,7 @@ Interesting, there's no real verification required. We don't need to know the ol
 
 Now let's look at the URL, as shown in our browser:
 
-http&#58;//dvwa/dvwa/vulnerabilities/csrf/?password_new=newpw&password_conf=newpw&Change=Change#
+<b>http&#58;//dvwa/dvwa/vulnerabilities/csrf/?password_new=newpw&password_conf=newpw&Change=Change#</b>
 
 We don't see encryption or masking of the password in the URL. 
 
@@ -60,7 +60,7 @@ Social engineering attacks are somewhat luck-based, as it relies on the user:
   <li>Getting your message;</li>
   <li>Reading your message;</li>
   <li>Clicking the link; and</li>
-  <li>(ideally) informing you the link didn't work in the way you pretended it would.</li>
+  <li>(Ideally) Informing you the link didn't work in the way you pretended it would.</li>
 </ol>
 
 That's why I'm not showing you how to do it here. Consider it extra credit :)
