@@ -22,7 +22,7 @@ And with an invalid input:
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/exectestbad.png" width="500">
 
-So it seems that the code takes our input, passes it as an argument to the command <b>ping</b>, and executes the string <b>ping [input]</b>. If it works, we'll see the unformatted output of the command. If it doesn't, we'll see nothing. That's useful information, since we can easily tell if our future command injection is working sucessfully based on the output we see.
+So it seems that the code takes our input, passes it as an argument to the command <b>ping</b>, and executes the string "<b>ping [input]</b>". If it works, we'll see the unformatted output of the command. If it doesn't, we'll see nothing. That's useful information, since we can easily tell if our future command injection is working sucessfully based on the output we see.
 
 Now that we know how the code works, we need to figure out two things: which commands to execute, and how to chain them together in a way that all commands execute and display their output successfully.
 
@@ -30,15 +30,15 @@ Now that we know how the code works, we need to figure out two things: which com
 
 We have two pieces of information to collect: the name of the current user of the web service, and the machine's hostname. We can Google this info rather easily, or test it on our Kali box. For the user, we can run the command <a href="https://en.wikipedia.org/wiki/Whoami" target="_blank"><b>whoami</b></a> without arguments. For the hostname, we use the appropriately-named <a href="https://ss64.com/nt/hostname.html" target="_blank"><b>hostname</b></a> without arguments. 
 
-Even more conveniently, we also learn that the <b>whoami</b> and <b>hostname</b> commands are the exact same in both Windows and Linux! If that wasn't true and we were doing a black-box pentest, we would need to figure out what OS the web server uses. We could run each OS's equivalent command and examine any output to see which one fails. Good examples of commands to test with include <b>powershell</b> (works on Windows, not Linux) or <b>ifconfig</b> (works on Linux, not Windows). There are other ways to find the OS as well,; play around and see what works for you.
+Even more conveniently, we also learn that the <b>whoami</b> and <b>hostname</b> commands are the exact same in both Windows and Linux! If that wasn't true and we were doing a black-box pentest, we would need to figure out what OS the web server uses. We could run a command unique to each OS and examine any output to see what fails. Good examples of commands to test with include <b>powershell</b> (works on Windows, not Linux) or <b>ifconfig</b> (works on Linux, not Windows). There are other ways to find the OS as well; play around and see what works for you.
 
 <h3><b>How to Chain Commands</b></h3>
 
-Again using our good friend Google, we learn we can chain commands in multiple ways. In Linux, we can use characters like "<b>;</b>" for standard chaining, "<b>&#38;&#38;</b>" if we want the second command to only run if the first worked, or "<b>&</b>" to run the first command in the background while the second runs. In Windows, we commonly use "<b>&#38;</b>". If this was a black-box test, we could iterate through all options to see what selection returns output and determine the OS that way. Or we could just use "<b>&#38;</b>" since it works on both OSes. We do run the risk of having command output returning in odd orders. Personally, as long as we get all required data, I'm okay with that. So let's use "<b>&#38;</b>".
+Again using our good friend Google, we learn we can chain commands in multiple ways. In Linux, we can use characters like "<b>;</b>" for standard chaining, "<b>&#38;&#38;</b>" if we want the second command to only run if the first worked, or "<b>&</b>" to run the first command in the background while the second runs. In Windows, we usually use "<b>&#38;</b>". If this was a black-box test, we could iterate through all options to see what selection returns output and determine the OS that way. Or we could just use "<b>&#38;</b>" since it works on both OSes. We do run the risk of having command output returning in odd orders if we have a Linux OS, due to how threads terminate. Personally, as long as we get all required data, I'm okay with that. So let's start with "<b>&#38;</b>".
 
 <h3><b>The Attack</b></h3>
 
-Let's start by taking what we learned and putting it into our actual attack string. We know we need:
+Let's take what we learned and putting it into our actual attack string. We know we need:
 
 <ul>
   <li>A valid IP address to close out the <b>ping</b> command built into the code;</li>
@@ -63,7 +63,7 @@ If we wanted cleaner output, we could try something like:
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/execattackclean.png" width="500">
 
-If we want to be thorough, we could verify this on our test web server itself:
+If we want to be thorough, we could verify our answer on the test web server itself:
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/execverify.png" width="500">
 
