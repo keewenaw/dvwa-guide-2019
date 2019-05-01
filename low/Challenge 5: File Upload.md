@@ -18,7 +18,7 @@ Let's not waste any time, and immediately try to upload Challenge 4's reverse sh
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/uploaduploadshell.png" width="500">
 
-It can't be this easy, can it? Remember, we already know where the <b>/hackable/</b> directory is in relation to the challenges. Let's try navigating to the newly-uploaded shell. 
+It can't be this easy, can it? The form tells you exactly where the newly-uploaded shell is! Let's try navigating to it. 
 
 <b>http&#58;//dvwa/dvwa/hackable/uploads/php-reverse-shell.php</b>
 
