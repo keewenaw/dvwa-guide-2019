@@ -16,7 +16,7 @@ Okay, let's navigate to the challenge. We are presented with a classic username/
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/bruteprompt.png" width="250">
 
-We're obviously assuming that we don't know the administrator's password, though we do. That's what we used to log into DVWA, after all. However, for convenience, we won't try and brute force the administrator's username, which is "admin". I tried it for fun, but it took way too much time and I feel that's not what the spirit of the challenge is. So our objective is to find the password for "admin".
+We're obviously assuming that we don't know the administrator's password, though I know we do. That's what we used to log into DVWA, after all. However, for convenience, we won't try and brute force the administrator's username, which is "admin". I tried it for fun, but it took way too much time and I feel that's not what the spirit of the challenge is. So our objective is to find the password for "admin".
 
 I don't know about you, Dear Reader, but I'm not manually brute forcing anything! So let's take a quick step back and examine what tools Kali has to automate brute forcing. Under "Applications" > "05 - Password Attacks", we see plenty - John, Medusa, Ophcrack, pyrit. I personally prefer the command-line cracker Hydra, so let's try that. 
 
@@ -26,9 +26,9 @@ But what arguments do we need to pass to Hydra? I'm guessing we'll need some, ri
 
 All right! I'll save us all some time and say which ones we need to know about:
 <ul>
-  <li><b>-l [arg]</b>: The username we want to attack. In our case, we don't need to pass it a file. We can just specify "admin" as a string.</li>
+  <li><b>-l [arg]</b>: The username we want to attack. In our case, we don't need to pass in a file. We can just specify "admin" as a string.</li>
   <li><b>-P [arg]</b>: The password we want to try. We don't know what this is yet, so we'll pull in a wordlist. More on that below.</li>
-  <li><b>-s [arg]</b>: The port our service is on. This should be port 80, as we didn't slap an SSL certificate on our web server.</li>
+  <li><b>-s [arg]</b>: The port our service is on. This should be port 80, as we didn't slap an SSL certificate on our web server. Yours may vary depending on how you set up your web server.</li>
   <li><b>[service]</b>: The kind of service (ie: what kind of HTTP request) this form uses. More below.</li>
   <li><b>[host]</b>: Our target web server. Mine is "dvwa".</li>
   <li><b>[target URI]</b>: The relative path to the vulnerable form, with some additional arguments formatted in a specific way. More below.</li>
@@ -36,12 +36,12 @@ All right! I'll save us all some time and say which ones we need to know about:
 
 Let's define the missing parts:
 <ul>
-  <li><b>-P [arg]</b>: In Kali, wordlists are stored at <b>/usr/share/wordlists/</b>. I think rockyou is a phenomenal list, so let's extract the TXT file in "rockyou.tar.gz" to our working directory.</li>
+  <li><b>-P [arg]</b>: In Kali, wordlists are stored at <b>/usr/share/wordlists/</b>. I think "rockyou" is a phenomenal list, so let's extract the TXT file in "rockyou.tar.gz" to our working directory.</li>
   <li><b>[service]</b>: We can find the service in multiple ways:
     <ul>
       <li>Examining the client-side source code in our browser (Right-click > "Inspect Element");
         <br><br>
-        <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/brutegetclient.png" width="500">
+        <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/brutegetclient.png" width="600">
       </li>
       <li>Clicking the "View Source" button on the bottom right of the page, which pulls the server's PHP file; or
         <br><br>
@@ -75,11 +75,11 @@ Wait, why did we get 16 valid pairs?! Take a second and see if you can find out 
 
 All set?
 
-Here's what happened: When we ran our command, we didn't actually give a way for Hydra to authenticate to our target page. Hence, without us knowing, Hydra actually ran the attack unauthenticated, which means the attack ran againt <b>/dvwa/login.php</b>. Since the error message for that page isn't the same as our target, Hydra can't really tell what a valid credential set is. So it just throws out the first 16 passwords in rockyou.txt at random for each of Hydra's 16 process threads (see the Hydra parameter screenshot above for why it's 16). 
+Here's what happened: When we ran our command, we didn't actually give a way for Hydra to authenticate to our target page. Hence, without us knowing, Hydra actually ran the attack unauthenticated, which means the attack ran againt <b>/dvwa/login.php</b>. Since the failed-login error message for that page isn't the same as our target, Hydra can't really tell what a valid credential set is. So it just throws out the first 16 passwords in rockyou.txt at random for each of Hydra's 16 process threads (see the Hydra parameter screenshot above for why it's 16). 
 
 So is there a way we can give or trick Hydra into using a valid session, so that it can "see" the actual target? 
 
-Let's find out by examining the cookies our browser has. You can do this by opening the Firefox developer web console (CTRL+Shift+K) and entering the string <b>document.cookie</b>. We see two fields, <b>security</b> and <b>PHPSESSID</b>. <b>security</b> is our current security setting, "low". <b>PHPSESSID</b> is our session ID, which is actually what we need! 
+We know cookies are often used in web authentication, so let's start by examining the cookies our browser has. You can do this by opening the Firefox developer web console (CTRL+Shift+K) and entering the string <b>document.cookie</b>. We see two fields, <b>security</b> and <b>PHPSESSID</b>. <b>security</b> is our current security setting, "low". <b>PHPSESSID</b> is our session ID, which is actually what we need! 
 
 Let's re-run our command, passing our cookie in the way Hydra expects:
 
@@ -97,7 +97,7 @@ We got the success message. Nice! But we're not quite done yet ...
 
 <h3><b>The Other Accounts</b></h3>
 
-So let's examine that weird white box (or actual image if your setup was <s>better</s>different than mine) below the success message. If we inspect that element as before, we see an interesting line: <b>%3Cimg src="./hackable/users/admin.jpg"%3E</b>. We can logically assume if we visit that <b>/users/</b> directory, we may find the other usernames in the format "USERNAME.jpg". So after some playing around with the URL in Firefox, we find the directory.
+So let's examine that weird white box (or actual image if your setup was <s>better</s>different than mine) below the success message. If we inspect that element as before, we see an interesting line: <b>&#60;img src="./hackable/users/admin.jpg"&#62;</b>. We can logically assume if we visit that <b>/users/</b> directory, we may find the other usernames in the format "[username].jpg". So after some playing around with the URL in Firefox, we find the directory.
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/bruteothers.png" width="500">
 
@@ -111,7 +111,7 @@ Regardless of how you found them, we find out that the other four usernames are:
   <li>"1337"</li>
 </ul>
 
-With this, we can easily modify our earlier Hydra command. We only need to make two changes. You capitalize the <b>-l</b> switch to <b>-L</b> and pass in a text file with all the usernames instead of <b>admin</b> (I called mine "users.txt").
+With this, we can easily modify our earlier Hydra command. We only need to make two changes. We capitalize the <b>-l</b> switch to <b>-L</b> to indicate we're now passing in a file. We then actually pass in a text file with all the usernames instead of <b>admin</b> (I called mine "users.txt").
 
 <b>hydra -L users.txt -P rockyou.txt -s 80 dvwa http-get-form "/dvwa/vulnerabilities/brute/index.php:username=^USER^&password=^PASS^&Login=Login:Username and/or password incorrect.:H=Cookie: security=low; PHPSESSID=</b>[your_value_here]<b>"</b>
 
