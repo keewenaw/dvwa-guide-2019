@@ -2,13 +2,13 @@
 <br>
 <b>Objective:</b> Execute any PHP function of your choosing on the target system (such as phpinfo()	or system()) thanks to this file upload vulnerability.
 <br>
-<b>Tools needed:</b> A reverse shell, a temporary web server on Kali, netcat
+<b>Tools needed:</b> A reverse shell, netcat
 <br><br>
 <i>Did you remember to read this section's <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
 
 <h2><b>The Guide</b></h2>
 
-<i>Note: This challenge is extremely similar to <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/Challenge%204:%20File%20Inclusion.md" target="_blank">Challenge 4</a>. We'll be using the temporary web server, netcat listener, and PHP reverse shell from before, so make sure those are good to go before proceeding.</i>
+<i>Note: This challenge is extremely similar to <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/Challenge%204:%20File%20Inclusion.md" target="_blank">Challenge 4</a>. We'll be using the PHP reverse shell and netcat listener from before, so make sure those are good to go before proceeding.</i>
 
 Right off the bat, DVWA presents a simple file upload form.
 
