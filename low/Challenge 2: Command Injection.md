@@ -12,7 +12,7 @@
 
 When we start the challenge, we see what looks to be a ping tool:
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/execintro.png" width="250">
+<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/execintro.png" width="500">
 
 Seems simple enough. Let's quickly test it with a valid IP.
 
@@ -30,21 +30,21 @@ Now that we know how the code works, we need to figure out two things: which com
 
 We have two pieces of information to collect: the name of the current user of the web service, and the machine's hostname. We can Google this info rather easily, or test it on our Kali box. For the user, we can run the command <a href="https://en.wikipedia.org/wiki/Whoami" target="_blank"><b>whoami</b></a> without arguments. For the hostname, we use the appropriately-named <a href="https://ss64.com/nt/hostname.html" target="_blank"><b>hostname</b></a> without arguments. 
 
-Even more conveniently, we also learn that the <b>whoami</b> and <b>hostname</b> commands are the exact same in both Windows and Linux! If that wasn't true and we were doing a black-box pentest, we could run each OS's equivalent command and examine the error message to see which one fails. Good examples of that would be <b>powershell</b> (on Windows, not Linux) or <b>ifconfig</b> (on Linux, not Windows). There are other ways to find the OS as well, but we'll ignore those for now.
+Even more conveniently, we also learn that the <b>whoami</b> and <b>hostname</b> commands are the exact same in both Windows and Linux! If that wasn't true and we were doing a black-box pentest, we would need to figure out what OS the web server uses. We could run each OS's equivalent command and examine any output to see which one fails. Good examples of commands to test with include <b>powershell</b> (works on Windows, not Linux) or <b>ifconfig</b> (works on Linux, not Windows). There are other ways to find the OS as well,; play around and see what works for you.
 
 <h3><b>How to Chain Commands</b></h3>
 
-Again using our good friend Google, we learn we can chain commands in multiple ways. In Linux, we can use characters like "<b>;</b>" for standard chaining, "<b>&#38;&#38;</b>" if we want the second command to only run if the first worked, or "<b>&</b>" to run the first command in the background while the second runs. In Windows, we commonly use "<b>&#38;</b>". If this was a black-box test, we could iterate through all options to see what selection returns output and determine the OS that way. Or we could just use "<b>&#38;</b>" since it works on both OSes. We do run the risk of having command output returning in odd orders. Personally, as long as we get all required data, I'm okay with that. So let's start with "<b>&#38;</b>".
+Again using our good friend Google, we learn we can chain commands in multiple ways. In Linux, we can use characters like "<b>;</b>" for standard chaining, "<b>&#38;&#38;</b>" if we want the second command to only run if the first worked, or "<b>&</b>" to run the first command in the background while the second runs. In Windows, we commonly use "<b>&#38;</b>". If this was a black-box test, we could iterate through all options to see what selection returns output and determine the OS that way. Or we could just use "<b>&#38;</b>" since it works on both OSes. We do run the risk of having command output returning in odd orders. Personally, as long as we get all required data, I'm okay with that. So let's use "<b>&#38;</b>".
 
 <h3><b>The Attack</b></h3>
 
 Let's start by taking what we learned and putting it into our actual attack string. We know we need:
 
 <ul>
-  <li>A valid IP to close out the <b>ping</b> command built into the code;</li>
+  <li>A valid IP address to close out the <b>ping</b> command built into the code;</li>
   <li>The command <b>whoami</b> to find out the user;</li>
   <li>The command <b>hostname</b> to find out the hostname; and</li>
-  <li>The chaining character "<b>&#38;</b>" to combine the above</li>
+  <li>The chaining character "<b>&#38;</b>" to combine the above.</li>
 </ul>
 
 Putting that together, we get our attack string:
@@ -62,5 +62,9 @@ If we wanted cleaner output, we could try something like:
 <b>127.0.0.1; echo "\nUser: $(whoami)"; echo "Hostname: $(hostname)"</b>
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/execattackclean.png" width="500">
+
+If we want to be thorough, we could verify this on our test web server itself:
+
+<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/execverify.png" width="500">
 
 We did it! Challenge complete.
