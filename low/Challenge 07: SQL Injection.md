@@ -90,7 +90,7 @@ For offline password cracking, I prefer the tool "John the Ripper" (AKA "john").
 
 The only useful parameters right now are: 
 <ul>
-  <li><b>--wordlist=</b>[wordlist_file]: We already had the "rockyou" wordlist from <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/Challenge%201:%20Brute%20Force.md" target="_blank">Challenge 1</a>. We'll be using that again.</li>
+  <li><b>--wordlist=</b>[wordlist_file]: We already had the "rockyou" wordlist from <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/Challenge%2001:%20Brute%20Force.md" target="_blank">Challenge 1</a>. We'll be using that again.</li>
   <li><b>--format=</b>[hash_format]: There's a useful site <a href="https://www.tunnelsup.com/hash-analyzer/" target="_blank">available here</a> that accepts a hash as input and outputs the algorithm believed to create it. john also has similar functionality, but I don't think it's reliable enough to use consistently. Plopping our hashes here tells us they're likely created with the MD5 algorithm. The john equivalent is "Raw-MD5".</li>
 </ul>
 
@@ -100,6 +100,6 @@ I've stored my hashes in a text file called "hashes.txt" in my working directory
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/sqlijohncrack.png" width="500">
 
-Perfect! If we needed help tying usernames and passwords together, we can add these cracked passwords to a wordlist. Adding the usernames we discovered in our last SQL query to a second wordlist, we can use Hydra to brute force them like we did in <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/Challenge%201:%20Brute%20Force.md" target="_blank">Challenge 1</a>.
+Perfect! If we needed help tying usernames and passwords together, we can add these cracked passwords to a wordlist. Adding the usernames we discovered in our last SQL query to a second wordlist, we can use Hydra to brute force them like we did in <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/Challenge%2001:%20Brute%20Force.md" target="_blank">Challenge 1</a>.
 
 That was a little rougher than expected, but hey. Challenge complete!
