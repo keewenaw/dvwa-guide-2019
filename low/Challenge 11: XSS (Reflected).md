@@ -38,6 +38,6 @@ If we inspect the form's source code after we input the exploit, we see it's bee
 
 And examining the Python web server logs shows the cookie:
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/xssrexploit.png" width="500">
+<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/xssrcookie.png" width="500">
 
 Easy enough! Challenge complete.
