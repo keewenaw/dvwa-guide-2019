@@ -4,7 +4,7 @@
 <br>
 <b>Tools needed:</b> A temporary web server
 <br><br>
-<i>Did you remember to read this section's <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
+<i>Did you remember to read this section's <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
 
 <h2><b>The Guide</b></h2>
 
@@ -14,7 +14,7 @@ Before we begin, we should probably define what DOM-based cross-site scripting (
 
 Now let's look at the form.
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/xssdform.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xssdform.png" width="500">
 
 We see a dropdown with several language choices. If we choose a language from the dropdown and click the "Select" button, we see the URL has changed to something like this:
 
@@ -30,7 +30,7 @@ Plop it in the URL, like so:
 
 <b>http&#58;//dvwa/dvwa/vulnerabilities/xss_d/?default=&#60;script&#62;alert(document.cookie)&#60;/script&#62;</b>
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/xssdalert.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xssdalert.png" width="500">
 
 <i>Note that I actually input <code>document.cookie.split(";")[0]</code> as my payload, in order to hide my session ID. Just a privacy thing for me. You don't have to do that, and it impacts nothing besides what you see in my screenshots.</i>
 
@@ -42,7 +42,7 @@ To get started with this, we'll need a web server. Let's stand a temporary one u
 
 <code>python -m SimpleHTTPServer 9999</code>
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/xssdwebserver.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xssdwebserver.png" width="500">
 
 We'll need this for a very important reason - we can log every single request made to the server. This holds true regardless of the validity of the URL. If we can find a way to extract information by building a URL with the info and requesting it from our web server, we should find the stolen information in our server logs. Let's illustrate how this will work below.
 
@@ -84,7 +84,7 @@ Now let's put it all together. Here's our final exploit.
 
 Let's visit the URL in our browser. If we're lucky, the web server logs will show the cookie as a URL request.
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/xssdcookie.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xssdcookie.png" width="500">
 
 There we go! We see three requests:
 <ol type="1">
