@@ -78,7 +78,7 @@ Of course, you can change <code>9999</code> to whatever port you want.
 
 Now let's find a shell. 
 
-Kali actually has a bunch of them included by default. You can find them at <b>/usr/share/webshells/</b>. Since we're dealing with PHP, I'm going to take <b>php/php-reverse-shell.php</b> and move it to my working directory. Open it up and define the variable <code>$ip</code> to your Kali IP address and <code>$port<code> to whatever port you want to receive a connection to. It's that easy!
+Kali actually has a bunch of them included by default. You can find them at <b>/usr/share/webshells/</b>. Since we're dealing with PHP, I'm going to take <b>php/php-reverse-shell.php</b> and move it to my working directory. Open it up and define the variable <code>$ip</code> to your Kali IP address and <code>$port</code> to whatever port you want to receive a connection to. It's that easy!
 
 Finally, we'll need a listener to accept the connection from the shell. The networking tool "netcat" sounds like it will fit our needs. Let's try this:
 
