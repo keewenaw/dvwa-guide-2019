@@ -38,7 +38,7 @@ Let's figure out how far we can take this.
 
 <h3><b>Local File Inclusion</b></h3>
 
-The challenge objective already told us where the five quotes are: <b>../hackable/flags/fi.php</b>. Let's start there, by passing in that exact path to the <b>page</b> parameter.
+The objective already told us where the five quotes are: <b>../hackable/flags/fi.php</b>. Let's start there, by passing in that exact path to the <b>page</b> parameter.
 
 <b>http&#58;//dvwa/dvwa/vulnerabilities/fi/?page=../hackable/flags/fi.php</b>
 
@@ -100,4 +100,4 @@ At this point, it's game over. All we need to do is navigate to the "fi.php" fil
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/firfisuccess.png" width="500">
 
-There's #3! We have all five quotes, and the challenge is complete. Well done!
+There's #3! We have all five quotes. Challenge complete. Well done!
