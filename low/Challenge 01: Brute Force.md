@@ -4,7 +4,7 @@
 <br>
 <b>Bonus objective:</b> Find the other four users' usernames and brute force each password.
 <br>
-<b>Tools needed:</b> Hydra, a remote shell from Challenge 5 (optional)
+<b>Tools needed:</b> Hydra, a remote shell from Challenge 4 (optional)
 <br><br>
 <i>Did you remember to read this section's <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
 
