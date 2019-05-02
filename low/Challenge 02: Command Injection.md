@@ -4,7 +4,7 @@
 <br>
 <b>Tools needed:</b> None
 <br><br>
-<i>Did you remember to read this section's <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
+<i>Did you remember to read this section's <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
 
 <h2><b>The Guide</b></h2>
 
@@ -12,15 +12,15 @@
 
 When we start the challenge, we see what looks to be a ping tool:
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/execintro.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/execintro.png" width="500">
 
 Seems simple enough. Let's quickly test it with a valid IP.
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/exectestgood.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/exectestgood.png" width="500">
 
 And with an invalid input:
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/exectestbad.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/exectestbad.png" width="500">
 
 So it seems that the code takes our input, passes it as an argument to the command <code>ping</code>, and executes the string "<code>ping [input]</code>". If it works, we'll see the unformatted output of the command. If it doesn't, we'll see nothing. That's useful information, since we can easily tell if our future command injection is working sucessfully based on the output we see.
 
@@ -53,7 +53,7 @@ Putting that together, we get our attack string:
 
 Let's try it out.
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/execattack.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/execattack.png" width="500">
 
 Success! Line 1 shows the output of <code>whoami</code>, "daemon". Line 4 shows the output of <code>hostname</code>, which I had specified as "ubuntuwebtest". Our hostname also leaks some useful information, that we're running Ubuntu on our web server. You can test this result as you see fit, but I won't show that here. 
 
@@ -61,10 +61,10 @@ If we wanted cleaner output, we could change how we chain the commands:
 
 <code>127.0.0.1; echo "\nUser: $(whoami)"; echo "Hostname: $(hostname)"</code>
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/execattackclean.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/execattackclean.png" width="500">
 
 If we want to be thorough, we could verify our answer on the test web server itself:
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/execconfirm.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/execconfirm.png" width="500">
 
 We did it! Challenge complete.
