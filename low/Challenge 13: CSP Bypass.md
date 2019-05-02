@@ -39,7 +39,7 @@ This tells us we can load Javascript from the following locations:
   <li>https://ssl.google-analytics.com/.</li>
 </ul>
 
-We could upload a Javascript file to DVWA, but we've already done that. Let's try something different. Of the other options, Pastebin allows us to upload any files we want, easily and anonymously. Sounds good to me!
+We could pretty easily upload a Javascript file to DVWA, but we've already done that. Let's try something different. Of the other options, Pastebin allows us to upload any files we want, painlessly and anonymously. Sounds good to me!
 
 <h3><b>Bypassing the CSP</b></h3>
 
@@ -54,13 +54,13 @@ By way of explanation, I uploaded the code snippet <code>console.log("CSP Bypass
   <li>Told Pastebin to delete the upload after an hour ("Paste Expiration").</li>
 </ol>
 
-You should get a success screen similar to this:
+After clicking the "Create New Paste" button, you should get a success screen similar to this:
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/csppastebinuploadsuccess.png" width="700">
 
 Click the "Raw" button above the top right corner of the "RAW Paste Data" field. 
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/csppastebinuploadrawlink.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/csppastebinrawdata.png" width="500">
 
 This removes all the Pastebin-added stuff and give us only what we uploaded. That's what we can use to check if our exploit works!
 
