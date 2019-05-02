@@ -14,7 +14,7 @@ Right off the bat, DVWA presents a simple file upload form.
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/uploadform.png" width="500">
 
-Let's not waste any time, and immediately try to upload Challenge 4's reverse shell.
+Let's not waste any time, and immediately try to upload Challenge 4's reverse shell, <b>php-reverse-shell.php</b>.
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/uploaduploadshell.png" width="500">
 
@@ -24,6 +24,6 @@ It can't be this easy, can it? The form tells you exactly where the newly-upload
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/uploadsuccess.png" width="500">
 
-Looks like the shell worked first try. I tested with the <b>whoami</b> command we learned in <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/Challenge%2002:%20Command%20Injection.md" target="_blank">Challenge 2</a>, and we got the same output as before. I guess it really was that easy!
+Looks like the shell worked first try. I tested with the <code>whoami</code> command we learned in <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/Challenge%2002:%20Command%20Injection.md" target="_blank">Challenge 2</a>, and we got the same output as before. I guess it really was that easy!
 
 Challenge complete! Feeling like a hacker yet?
