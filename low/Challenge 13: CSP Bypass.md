@@ -8,23 +8,23 @@
 
 <h2><b>The Guide</b></h2>
 
-<h3><b>Discovering the CSP/b></h3>
+<h3><b>Discovering the CSP</b></h3>
 
 Okay, here's what we see:
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/cspform.png" width="500">
 
-We know from the first link that we can discover the current CSP by viewing the HTTP response header the server sends back to us. We can do this via Burp Suite, and I'd actually recommend that. Firefox also allows us to view headers via the Firefox developer console. Since it takes less time to configure, let's pull the developer console up and navigate to the "Network" tab. 
+We know from the first link under "More Information" that we can discover the current CSP by viewing the HTTP response header the server sends back to us. We can do this via Burp Suite, and I'd actually recommend that due to the multiple useful features Burp offers. Firefox also allows us to view headers via the Firefox developer console. Since it takes less time to configure, let's pull the developer console up and navigate to the "Network" tab. 
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/cspnetworktab.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/cspnetworktab.png" width="700">
 
 It immediately tells us to perform a request, so why don't we input a test URL in the form and see what happens?
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/cspnetworktest.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/cspnetworktest.png" width="700">
 
 We see a bunch of 200 response codes, which helps. Let's double click on the POST request to see what we learn.
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/cspfindcsp.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/cspfindcsp.png" width="700">
 
 In the bottom right corner, we see a response header called "Content-Sewcurity-Policy". That's what we need! Examing the contents tells us the CSP:
 
@@ -39,19 +39,24 @@ This tells us we can load Javascript from the following locations:
   <li>https://ssl.google-analytics.com/.</li>
 </ul>
 
-We could upload a Javascript file using the upload feature of Challenge 5, but we already did something similar. Let's try something else. Of the other options, Pastebin allows us to upload any files we want, anonymously. Sounds good to me!
+We could upload a Javascript file using the upload feature of Challenge 5, but we already did something similar to beat that challenge. Let's try something different. Of the other options, Pastebin allows us to upload any files we want, easily and anonymously. Sounds good to me!
 
-<h3><b>Bypassing the CSP/b></h3>
+<h3><b>Bypassing the CSP</b></h3>
 
 Let's upload some example code to Pastebin.
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/csppastebinupload.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/csppastebinupload.png" width="700">
 
-By way of explanation, I uploaded the code snippet <code>console.log("CSP Bypass");</code> to Pastebin. This snippet will make the string "CSP Bypass" visible in our browser's console log, if our attack works. I told Pastebin that I uploaded a Javascript file ("Syntax Highlighting"), made the upload an unlisted post ("Post Exposure"), and told Pastebin to delete the upload after an hour ("Paste Expiration"). 
+By way of explanation, I uploaded the code snippet <code>console.log("CSP Bypass");</code> to Pastebin. This snippet will make the string "CSP Bypass" visible in our browser's console log, if our attack works. I told Pastebin that I:
+<ol type="1">
+  <li>Uploaded a Javascript file ("Syntax Highlighting");</li>
+  <li>Made the upload an "unlisted" post (only people who know the direct link of the upload will know it exists, via "Post Exposure"); and</li>
+  <li>Told Pastebin to delete the upload after an hour ("Paste Expiration").<li>
+</ol>
 
 You should get a success screen similar to this:
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/csppastebinuploadsuccess.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/csppastebinuploadsuccess.png" width="700">
 
 Click the "Raw" button above the top right corner of the "RAW Paste Data" field. 
 
@@ -61,6 +66,6 @@ This removes all the Pastebin-added stuff and give us only what we uploaded. Tha
 
 Let's navigate back to the challenge and open up the developer console (Press the keys<code>Control+Shift+K</code> simultaneously). Enter our raw Pastebin link into the form field. Click the "Include" button and check the console log.
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/cspsuccess.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/cspcomplete.png" width="700">
 
-We did it! Our message was successfully logged to the console and we can see it. Challenge complete!
+We did it! Our message was successfully logged to the console, and we can verify we see it. Challenge complete!
