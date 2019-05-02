@@ -48,7 +48,7 @@ Hm, nothing got pulled in? Strange. Why do you think that is?
 
 If you look carefully, you'll notice that we set the root directory of DVWA to <b>/dvwa/</b>. Therefore, the challenge is located at <b>/dvwa/vulnerabilities/fi/</b>. But wait, DVWA gave us the following path for the flags: <b>/dvwa/hackable/flags/fi.php</b>. What happened? Essentially, DVWA placed our current challenge two levels deep from the root. However, we only navigated up one directory in our attempted exploit. We'll actually need to go up <i>two</i> levels to find the <b>/hackable/</b> directory, not just one.
 
-<i>Note: if you didn't deduce this yourself, you could use an automatic tool like fimap to "brute force" how many directories you'll need to traverse.</i>
+<i>Note: if you didn't deduce this yourself, you could use an automatic tool like "fimap" to "brute force" how many directories you'll need to traverse.</i>
 
 Let's modify the URL as follows:
 
@@ -70,23 +70,23 @@ We already know we can point the <b>page</b> parameter to whatever we want, whet
 
 I tend to like reverse shells, so let's start by setting up a temporary web server on Kali. I don't know about you, but I don't want to deal with a full Apache server, .htaccess, moving files around, and all that. Lucky for us, we can easily stand one up with the following command:
 
-<b>python -m SimpleHTTPServer 9999</b>
+<code>python -m SimpleHTTPServer 9999</code>
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/firfilistenersetup.png" width="500">
 
-Of course, you can change <b>9999</b> to whatever port you want.
+Of course, you can change <code>9999</code> to whatever port you want.
 
 Now let's find a shell. 
 
-Kali actually has a bunch of them included by default. You can find them at <b>/usr/share/webshells/</b>. Since we're dealing with PHP, I'm going to take <b>php/php-reverse-shell.php</b> and move it to my working directory. Open it up and define the variable "$ip" to your Kali IP address and "$port" to whatever port you want to receive a connection to. It's that easy!
+Kali actually has a bunch of them included by default. You can find them at <b>/usr/share/webshells/</b>. Since we're dealing with PHP, I'm going to take <b>php/php-reverse-shell.php</b> and move it to my working directory. Open it up and define the variable <code>$ip</code> to your Kali IP address and <code>$port<code> to whatever port you want to receive a connection to. It's that easy!
 
 Finally, we'll need a listener to accept the connection from the shell. The networking tool "netcat" sounds like it will fit our needs. Let's try this:
 
-<b>nc -lvnp 5555</b>
+<code>nc -lvnp 5555</code>
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/firfincsetup.png" width="500">
 
-Again, feel free to change <b>5555</b> to your preferred port.
+Again, feel free to change <code>5555</code> to your preferred port.
 
 Now it's time to bring it all together. Your new RFI exploit should look something like:
 
@@ -96,7 +96,7 @@ Let's try it out! Let's submit the URL and check our netcat listener.
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/firfishell.png" width="500">
 
-At this point, it's game over. All we need to do is navigate to the "fi.php" file mentioned above and view the source code.
+At this point, it's game over. All we need to do is navigate to the <b>fi.php</b> file mentioned above and view the source code.
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/firfisuccess.png" width="500">
 
