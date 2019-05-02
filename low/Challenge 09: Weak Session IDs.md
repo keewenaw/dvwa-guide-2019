@@ -12,11 +12,11 @@ Here's what we start with:
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/weakform.png" width="500">
 
-Right away, the text tells us to look at our cookies, specifically one called "dvwaSession". And when I think cookies, I think the Firefox developer console. Let's pull that up with <b>Control+Shift+K</b>. Let's click the "Generate" button and enter the text <b>document.cookie</b> in the console. Here's what I see:
+Right away, the text tells us to look at our cookies, specifically one called "dvwaSession". And when I think cookies, I think the Firefox developer console. Let's pull that up via the keyboard with <code>Control+Shift+K</code>. Let's click the "Generate" button and enter the text <code>document.cookie</code> in the console. Here's what I see:
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/weakinitial.png" width="700">
 
-<i>Note that I actually input <b>document.cookie.split(";")[0]</b> to hide my session ID. Just a privacy thing for me. You don't have to do that, and it impacts nothing besides what you see in my screenshots.</i>
+<i>Note that I actually input <code>document.cookie.split(";")[0]</code> to hide my session ID. Just a privacy thing for me. You don't have to do that, and it impacts nothing besides what you see in my screenshots.</i>
 
 Oh no, <b>dvwaSession</b> is set to "1". I think you know exactly how this is going to go!
 
