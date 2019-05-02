@@ -8,4 +8,35 @@
 
 <h2><b>The Guide</b></h2>
 
-Working on it as of 5/1/2019.
+THIS IS A WORK IN PROGRESS.
+
+<h3><b>Examining the Form</b></h3>
+
+Here's our form:
+
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/sqlibform.png" width="500">
+
+We know from the related <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/Challenge%2007:%20SQL%20Injection.md" target="_blank">Challenge 7</a> that there are five user IDs: 1, 2, 3, 4, and 5. So let's test the form by inputting "1":
+
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/sqlibtestt.png" width="500">
+
+Now just for fun, let's try a user ID that we know doesn't exist, like "6".
+
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/sqlibtestf.png" width="500">
+
+So we get a message of "User ID exists in the database." for valid, "true" entries, and "User ID is MISSING from the database." for invalid, "false" entries. 
+
+<h3><b>Discovering </b></h3>
+
+In our last section, we discovered that the returned message differs based on whether the input was "valid or not. That's incredibly important information. You see, the key issue with blind SQL injection attacks is that we can't directly view the result of the query; it usually gets filtered or processed before something is returned to the end user. So by having clearly defined "true" and "false" messages, the server will still leak information. As long as we can craft a SQLi exploit that can return a a true/false answer, we can leverage that to pull arbitrary information. It'll take longer, but is still effective. So let's start building a query that gives is what we want.
+
+For basic SQLi attacks, we could have a query like:
+
+<code>1' or (select version()) #</code>
+
+But since we can only get a "true"/"false", we can approach this in two ways:
+
+<ol type="1">
+  <li>Iterate through every version number possible and do a string comparison. For example, we could try <code><code>1' or ascii((select version()))="" #</code></code></li>
+  <li></li>
+</ol>
