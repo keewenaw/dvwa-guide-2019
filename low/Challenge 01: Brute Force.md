@@ -6,7 +6,7 @@
 <br>
 <b>Tools needed:</b> Hydra, a remote shell from Challenge 4 (optional)
 <br><br>
-<i>Did you remember to read this section's <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
+<i>Did you remember to read this section's <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
 
 <h2><b>The Guide</b></h2>
 
@@ -14,7 +14,7 @@
 
 Okay, let's navigate to the challenge. We are presented with a classic username/password web form. 
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/bruteprompt.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/bruteprompt.png" width="500">
 
 We're obviously assuming that we don't know the administrator's password, though I know we do. That's what we used to log into DVWA, after all. However, for convenience, we won't try and brute force the administrator's username, which is "admin". I tried it for fun, but it took way too much time and I feel that's not what the spirit of the challenge is. So our objective is to find the password for "admin".
 
@@ -22,7 +22,7 @@ I don't know about you, Dear Reader, but I'm not manually brute forcing anything
 
 But what arguments do we need to pass to Hydra? I'm guessing we'll need some, right? Let's try running the command <code>hydra</code> in the terminal and find out!
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/brutehydraparams.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/brutehydraparams.png" width="500">
 
 All right! I'll save us all some time and say which ones we need to know about:
 <ul>
@@ -41,11 +41,11 @@ Let's define the missing parts:
     <ul>
       <li>Examining the client-side source code in our browser (Right-click > "Inspect Element");
         <br><br>
-        <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/brutegetclient.png" width="600">
+        <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/brutegetclient.png" width="600">
       </li>
       <li>Clicking the "View Source" button on the bottom right of the page, which pulls the server's PHP file; or
         <br><br>
-        <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/brutesource.png" width="500">
+        <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/brutesource.png" width="500">
       </li>
       <li>Analyzing the traffic in Burp Suite. It's good practice if you don't know Burp well, but it's overkill for our purposes.</li>
     </ul>
@@ -67,7 +67,7 @@ Combining all that together, we get our final command.
 
 If it works, our successful username/password pair will be highlighted in green. Let's run it and see what happens! 
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/brutepwno.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/brutepwno.png" width="500">
 
 Wait, why did we get 16 valid pairs?! Take a second and see if you can find out why.
 
@@ -87,11 +87,11 @@ Let's re-run our command, passing our cookie in the way Hydra expects:
 
 Behold! 
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/brutepwyes.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/brutepwyes.png" width="500">
 
 Let's test our cracked password in the form:
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/brutesuccess.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/brutesuccess.png" width="500">
 
 We got the success message. Nice! But we're not quite done yet ...
 
@@ -99,9 +99,9 @@ We got the success message. Nice! But we're not quite done yet ...
 
 So let's examine that weird white box (or actual image if your setup was <s>better</s>different than mine) below the success message. If we inspect that element as before, we see an interesting line: <code>&#60;img src="./hackable/users/admin.jpg"&#62;</code>. We can logically assume if we try to visit that <b>/users/</b> directory, we may find the other usernames in the format <b>[username].jpg</b>. So after some playing around with the URL in Firefox, we find the directory.
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/bruteothers.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/bruteothers.png" width="500">
 
-Other possible attack vectors include uploading a reverse shell in <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/Challenge%2004:%20File%20Inclusion.md" target="_blank">Challenge 4</a>, SQL injection, or passing in a wordlist of all possible usernames and brute forcing that at the same time as the passwords.
+Other possible attack vectors include uploading a reverse shell in <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/Challenge%2004:%20File%20Inclusion.md" target="_blank">Challenge 4</a>, SQL injection, or passing in a wordlist of all possible usernames and brute forcing that at the same time as the passwords.
 
 Regardless of how you found them, we find out that the other four usernames are:
 <ul>
@@ -117,7 +117,7 @@ With this, we can easily modify our earlier Hydra command. We only need to make 
 
 Let's see the result.
 
-<img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/bruteotherpwyes.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/bruteotherpwyes.png" width="500">
 
 We can test each as before, and they all give us a similar success message. 
 
