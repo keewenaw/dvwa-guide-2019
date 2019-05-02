@@ -36,7 +36,7 @@ All right! I'll save us all some time and say which ones we need to know about:
 
 Let's define the missing parts:
 <ul>
-  <li><code>-P [arg]</code>: In Kali, wordlists are stored at <b>/usr/share/wordlists/</b>. I think "rockyou" is a phenomenal list, so let's extract the TXT file in <code>rockyou.tar.gz</code> to our working directory.</li>
+  <li><code>-P [arg]</code>: In Kali, wordlists are stored at <b>/usr/share/wordlists/</b>. I think "rockyou" is a phenomenal list, so let's extract the TXT file in "rockyou.tar.gz" to our working directory.</li>
   <li><code>[service]</code>: We can find the service in multiple ways:
     <ul>
       <li>Examining the client-side source code in our browser (Right-click > "Inspect Element");
@@ -50,7 +50,7 @@ Let's define the missing parts:
       <li>Analyzing the traffic in Burp Suite. It's good practice if you don't know Burp well, but it's overkill for our purposes.</li>
     </ul>
     <br>
-    We can see multiple instances of the word "GET", which makes it clear that <code>[service]</code> should be <code>http-get-form</code>!
+    We can see multiple instances of the word "GET", which makes it clear that <code>[service]</code> should be <b>http-get-form</b>!
     <br><br>
   </li>
   <li><code>[target URI]</code>: Formatting this is tricky, so I'll tell you that this part will require three parts, separated by "<b>:</b>":
@@ -111,7 +111,7 @@ Regardless of how you found them, we find out that the other four usernames are:
   <li>"1337"</li>
 </ul>
 
-With this, we can easily modify our earlier Hydra command. We only need to make two changes. We capitalize the <code>-l</code> switch to <code>-L</code> to indicate we're now passing in a file. We then actually pass in a text file with all the usernames instead of <code>admin</code> (I called mine "users.txt").
+With this, we can easily modify our earlier Hydra command. We only need to make two changes. We capitalize the <code>-l</code> switch to <code>-L</code> to indicate we're now passing in a file. We then actually pass in a text file with all the usernames instead of the string <code>admin</code> (I called mine "users.txt").
 
 <code>hydra -L users.txt -P rockyou.txt -s 80 dvwa http-get-form "/dvwa/vulnerabilities/brute/index.php:username=^USER^&password=^PASS^&Login=Login:Username and/or password incorrect.:H=Cookie: security=low; PHPSESSID=[your_value_here]"</code>
 
