@@ -32,7 +32,7 @@ Perfect! Instead of using an <code>alert</code>, let's use our previous exploit/
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/xssrexploit.png" width="500">
 
-If we inspect the form's source code after we input the exploit, we see it's been successfully inserted:
+If we inspect the form's source code after we input the exploit, we see it's been successfully inserted into the page:
 
 <img src="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/screenshots/xssrsource.png" width="500">
 
