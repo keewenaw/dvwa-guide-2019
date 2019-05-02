@@ -26,17 +26,17 @@ But what arguments do we need to pass to Hydra? I'm guessing we'll need some, ri
 
 All right! I'll save us all some time and say which ones we need to know about:
 <ul>
-  <li><code>-l [arg]</code>: The username we want to attack. In our case, we don't need to pass in a file. We can just specify "admin" as a string.</li>
-  <li><code>-P [arg]</code>: The password we want to try. We don't know what this is yet, so we'll pull in a wordlist. More on that below.</li>
-  <li><code>-s [arg]</code>: The port our service is on. This should be port 80, as we didn't slap an SSL certificate on our web server. Yours may vary depending on how you set up your web server.</li>
+  <li><code>-l [username]</code>: The username we want to attack. In our case, we don't need to pass in a file. We can just specify "admin" as a string.</li>
+  <li><code>-P [wordlist_file]</code>: The password we want to try. We don't know what this is yet, so we'll pull in a wordlist. More on that below.</li>
+  <li><code>-s [port]</code>: The port our service is on. This should be port 80, as we didn't slap an SSL certificate on our web server. Yours may vary depending on how you set up your web server.</li>
   <li><code>[service]</code>: The kind of service (ie: what kind of HTTP request) this form uses. More below.</li>
   <li><code>[host]</code>: Our target web server. Mine is "dvwa".</li>
-  <li><code>[target URI]</code>: The relative path to the vulnerable form, with some additional arguments formatted in a specific way. More below.</li>
+  <li><code>[target_URI]</code>: The relative path to the vulnerable form, with some additional arguments formatted in a specific way. More below.</li>
 </ul>
 
 Let's define the missing parts:
 <ul>
-  <li><code>-P [arg]</code>: In Kali, wordlists are stored at <b>/usr/share/wordlists/</b>. I think "rockyou" is a phenomenal list, so let's extract the TXT file in "rockyou.tar.gz" to our working directory.</li>
+  <li><code>-P [wordlist_file]</code>: In Kali, wordlists are stored at <b>/usr/share/wordlists/</b>. I think "rockyou" is a phenomenal list, so let's extract the TXT file in "rockyou.tar.gz" to our working directory.</li>
   <li><code>[service]</code>: We can find the service in multiple ways:
     <ul>
       <li>Examining the client-side source code in our browser (Right-click > "Inspect Element");
@@ -53,7 +53,7 @@ Let's define the missing parts:
     We can see multiple instances of the word "GET", which makes it clear that <code>[service]</code> should be <b>http-get-form</b>!
     <br><br>
   </li>
-  <li><code>[target URI]</code>: Formatting this is tricky, so I'll tell you that this part will require three parts, separated by "<b>:</b>":
+  <li><code>[target_URI]</code>: Formatting this is tricky, so I'll tell you that this part will require three parts, separated by "<b>:</b>":
     <ol type="1">
       <li><b>The full target URL</b>. We know the exact URL of the form already: <b>/dvwa/vulnerabilities/brute/index.php</b>.</li>
       <li><b>Any parameters</b>. If we view the client-side source code above, we can see two parameters listed: <b>username</b> and <b>password</b>. We also see an action, <b>Login</b>, which we have to pass in so the form knows what to do with our data.</li> 
@@ -79,7 +79,7 @@ Here's what happened: When we ran our command, we didn't actually give a way for
 
 So is there a way we can give or trick Hydra into using a valid session, so that it can "see" the actual target? 
 
-We know cookies are often used in web authentication, so let's start by examining the cookies our browser has. You can do this by opening the Firefox developer web console (CTRL+Shift+K) and entering the string <code>document.cookie</code>. We see two fields, <b>security</b> and <b>PHPSESSID</b>. <b>security</b> is our current security setting, "low". <b>PHPSESSID</b> is our session ID, which is actually what we need! 
+We know cookies are often used in web authentication, so let's start by examining the cookies our browser has. You can do this by opening the Firefox developer web console (Control+Shift+K) and entering the string <code>document.cookie</code>. We see two fields, <b>security</b> and <b>PHPSESSID</b>. <b>security</b> is our current security setting, "low". <b>PHPSESSID</b> is our session ID, which is actually what we need! 
 
 Let's re-run our command, passing our cookie in the way Hydra expects:
 
@@ -111,7 +111,7 @@ Regardless of how you found them, we find out that the other four usernames are:
   <li>"1337"</li>
 </ul>
 
-With this, we can easily modify our earlier Hydra command. We only need to make two changes. We capitalize the <code>-l</code> switch to <code>-L</code> to indicate we're now passing in a file. We then actually pass in a text file with all the usernames instead of the string <code>admin</code> (I called mine "users.txt").
+With this, we can easily modify our earlier Hydra command. We only need to make two changes. We capitalize the <code>-l</code> switch to <code>-L</code> to indicate we're now passing in a file. We then actually pass in a text file with all the usernames instead of the string "admin" (I called mine "users.txt").
 
 <code>hydra -L users.txt -P rockyou.txt -s 80 dvwa http-get-form "/dvwa/vulnerabilities/brute/index.php:username=^USER^&password=^PASS^&Login=Login:Username and/or password incorrect.:H=Cookie: security=low; PHPSESSID=[your_value_here]"</code>
 
