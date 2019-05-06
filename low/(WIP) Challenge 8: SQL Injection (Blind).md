@@ -22,7 +22,7 @@ We know from the related <a href="https://github.com/keewenaw/dvwa-guide-2019/bl
 
 Now just for fun, let's try a user ID that we know doesn't exist, like "6".
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/sqlibtestf.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/sqlibtestf2.png" width="500">
 
 So we get a message of "User ID exists in the database." for valid, "true" entries, and "User ID is MISSING from the database." for invalid, "false" entries. 
 
