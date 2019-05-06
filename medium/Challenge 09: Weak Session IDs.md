@@ -44,6 +44,6 @@ That does indeed match up with the times I clicked the button! Upon reviewing th
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/weaksource.png" width="500">
 
-Predicting other users' cookies becomes a lot more difficult in most circumstances. We'll need to know the exact time they logged on, in order to convert that time into Unix time and steal their session. Or we'd have to find a way to kick a user off their session, then allow them to log in at a time we already know.
+In the real world, predicting other users' cookies becomes a lot more difficult in most circumstances. We'll need to know the exact time they logged on, in order to convert that time into Unix time and steal their session. Or we'd have to find a way to kick a user off their session, then allow them to log in at a time we already know.
 
 Challenge complete.
