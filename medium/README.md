@@ -13,4 +13,6 @@ My details are as follows:
 
 I may list paths in a relative sense. For example, I may reference the full URL of <b>http&#58;&#47;&#47;dvwa/dvwa/login.php</b> as <b>/dvwa/login.php</b>. 
 <br><br>
+Due to most of our comprehensive analysis occuring in the <a href="https://github.com/keewenaw/dvwa-guide-2019/tree/master/low" target="_blank"> easy mode section</a>, most of these guides will focus on the specific countermeasures in play in this mode and how to circumvent them. These will stay white-box.
+<br><br>
 Don't forget, there is a help/hint guide for each challenge built into the app. It's always located at the bottom right corner of each challenge's main page. You may need to scroll down to see it. They're well-written and incredibly useful.
