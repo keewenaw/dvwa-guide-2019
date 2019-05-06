@@ -38,7 +38,9 @@ But since we can only get a "true"/"false", we can approach this in two ways:
 
 <ol type="1">
   <li>Iterate through every version number possible and do a string comparison. For example, we could do something like <code>test 5.0.0.0, 5.0.0.1, ... , 5.1.0.0, ... until we get a match</code>. In my mind, this isn't feasible since we don't know the exact format of the version number. What if it's X.X.X.X, or XX.XX.XX.XX, or XX.XXXXXX? Since we don't really have a way of knowing when doing a blind test, this option doesn't seem effective.</li>
-  <li>Iterate through each character in the version number. We could try something like <code>grab the first character of the version number, then iterate through all alphanumeric ASCII characters until we find a match. We then move to the second character of the version number, then third, and so on until we get a blank space (implying the end of the version string)</code.</li>
+  <li>Iterate through each character in the version number. We could try something like <code>grab the first character of the version number, then iterate through all alphanumeric ASCII characters until we find a match. We then move to the second character of the version number, then third, and so on until we get a blank space (implying the end of the version string)</code>. Since this is format-agnostic, this seems like the best place to start.</li>
 </ol>
+
+Further, since we don't know the version length, plus since we do know the range of alphanumeric ASCII characters is somewhat large, this sounds like a prime opportunity to build a script to automate this process!
 
 THIS IS A WORK IN PROGRESS, TO BE COMPLETED LATER.
