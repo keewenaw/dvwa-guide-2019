@@ -20,7 +20,7 @@ We see that some verification code has been added, ensuring that the uploaded fi
 
 <h3><b>Crafting a New Exploit</b></h3>
 
-The trick here is pretty easy - as long as we can spoof the type of the file, we should be good to go! We even have the perfect tool for this, Burp Suite.
+The exploit here is pretty easy - as long as we can spoof or modify the file type in our HTTP request, we should be good to go! We even have the perfect tool for this, Burp Suite.
 
 In Burp Suite, let's enable traffic interception ("Proxy" > "Intercept" > "Intercept is On" button is enabled). Let's then try uploading our shell from before, <code>php-reverse-shell.php</code>. When you see your request intercepted, send it to the Burp Repeater by clicking "Action" > "Send to Repeater". There, look for the <b>Content-Type</b> header, and change it from <code>application/x-php</code> to <code>image/png</code>.
 
@@ -30,7 +30,7 @@ Click the "Go" button when done. In the "Response" section, navigate to the "Ren
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/uploadrender.png" width="500">
 
-You can turn off Burp interception now. If we start <code>netcat</code>, then navigate to the uploaded file, we should get a shell:
+You can turn off Burp interception now. If we start <code>netcat</code>, then navigate to the uploaded file in our browser, we should get a shell:
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/uploadsuccess.png" width="500">
 
