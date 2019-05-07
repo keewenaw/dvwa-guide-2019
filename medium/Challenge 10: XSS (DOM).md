@@ -40,7 +40,7 @@ If we put that in our URL, it should work, fingers crossed:
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/xssdbreakfail.png" width="500">
 
-Hm, no luck. Seems our payload won't be executed, probably because the web page adds <code>script</code> tags when trying to execute it. Let's try putting our payload in the <code>img</code> tag proper, to remove the dependency on using a Javascript file. 
+Hm, no luck. Seems our payload won't be executed, as the web page treats <code>a.js</code> as an actual image rather than code. Let's try putting our payload in the <code>img</code> tag proper, to remove the dependency on using a Javascript file. 
 
 After playing around, we get something like:
 
@@ -49,7 +49,7 @@ After playing around, we get something like:
 This code does several things:
 <ul>
   <li>Gives a label to our <code>img</code> element; we call it 'pic';</li>
-  <li>Specifies an invalid <b>src</b> parameter, which doesn't exist. This will trigger the <code>onerror</code> code;</li>
+  <li>Specifies an invalid <b>src</b> parameter, which doesn't exist. This will trigger the <code>onerror</code> code; and</li>
   <li>Specify an error condition. This can be Javascript, which will execute without using <code>script</code> tags. So we set our image source to a fake URL on our temporary server, which will eventually request a page with the same name as the user's cookie. Right after, we'll delete our element, to keep the error code from continuously triggering and executing a denial-of-service attack on our own server.</li>
 </ul>
 
