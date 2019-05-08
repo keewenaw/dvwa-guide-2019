@@ -6,7 +6,7 @@
 <br>
 <b>Additional notes:</b> This module requires keys for Captcha v2. V3 will not work.
 <br><br>
-<i>Did you remember to read this section's <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
+<i>Did you remember to read this section's <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
 
 <h2><b>The Guide</b></h2>
 
