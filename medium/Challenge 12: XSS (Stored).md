@@ -20,7 +20,7 @@ We see that our former attack vector, the "Message" field, has been locked down 
 
 <h3><b>Crafting a New Exploit</b></h3>
 
-So we note, like last time, that the improperly-sanitized "Name" field truncates all input to a maximum of 10 characters. However, that's only on the client-side form. If we can intercept the HTTP request in Burp Suite and insert our exploit in the "Name" field there, would that work? Let's find out.
+So we note, like last time, that the improperly-sanitized "Name" field truncates all input to a maximum of 10 characters. However, that's only on the client-side form. If we can intercept the HTTP request in Burp Suite and insert our modified exploit in the "Name" field there, would that work? Let's find out.
 
 Here's our input:
 
@@ -28,7 +28,7 @@ Here's our input:
 
 Which seems to work ...
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/xsssburprepeaterout.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/xsssburprepeaterout.png" width="700">
 
 And if we refresh the page ...
 
