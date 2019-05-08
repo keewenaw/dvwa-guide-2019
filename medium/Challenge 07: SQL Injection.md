@@ -16,13 +16,13 @@ Let's start by clicking the "View Source" button on the bottom right of the chal
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/sqlisourceserver.png" width="500">
 
-We see the addition of the PHP function <code><a href="https://www.php.net/manual/en/mysqli.real-escape-string.php" target="_blank">mysqli_real_escape_string()</a></code>. Essentially, this method cleans the input, removing any characters an attacker traditionally uses to trigger a SQL injection (SQLi) attack. From <a href="https://www.w3schools.com/php/func_mysqli_real_escape_string.asp" target="_blank">this link</a>, we know the characters the function removes include:
+We see the addition of the PHP function <code><a href="https://www.php.net/manual/en/mysqli.real-escape-string.php" target="_blank">mysqli_real_escape_string()</a></code>. Essentially, this method cleans ("sanitizes") the input, removing any characters an attacker traditionally uses to trigger a SQL injection (SQLi) attack. From <a href="https://www.w3schools.com/php/func_mysqli_real_escape_string.asp" target="_blank">this link</a>, we know the characters the function removes include:
 
 <blockquote>NUL (ASCII 0), \n, \r, \, ', ", Control-Z</blockquote>
 
 Now let's examine the client-side source code to see how things get passed to the function:
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/sqlisourceclient.png" width="500">
+<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/sqlisourceclient.png" width="700">
 
 We see that the variable <code>id</code> gets set to whatever we select in the dropdown, then gets sent to the server in a POST request.
 
@@ -38,15 +38,15 @@ The only character that's in our exploit that will get removed by <code>mysqli_r
 
 <code>% or 0=0 union select user, password from dvwa.users #</code>
 
-Okay, we have a starting point for a new exploit. So how do we pass it to the <code>$id</code> parameter, especially when the developer added the dropdown menu to protect the value? Personally, for modifying in-transit HTTP request, I love Burp Suite.
+Okay, we have a starting point for a new exploit. So how do we pass it to the <code>$id</code> parameter, especially when the developer added the dropdown menu to protect the value? Personally, for modifying in-transit HTTP requests, I love Burp Suite.
 
-Let's boot Burp up and turn on interception ("Proxy" tab > "Intercept" tab > "Intercept is on" button is enabled). Then let's trigger the code by selecting something from the challenge dropdown at random, then clicking the "Submit" button. When we see the request in the "Intercept" tab, click "Action" > "Send to Repeater" to move it to the "Repeater" tab for modification. (You can turn off interception now as well.) When viewing the request in the repeater, we see the <code>id</code> parameter on the bottom. Let's replace the value with our exploit and click "Go".
+Let's boot Burp up and turn on interception ("Proxy" tab > "Intercept" tab > "Intercept is on" button is enabled). Then let's trigger the code by selecting something from the challenge dropdown at random, then clicking the "Submit" button. When we see the request in the "Intercept" tab, click "Action" > "Send to Repeater" to move it to the "Repeater" tab for modification. (You can turn off interception now as well.) When viewing the request in the repeater module, we see the <code>id</code> parameter on the bottom. Let's replace the value with our exploit and click "Go".
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/sqliburprepeaterfail.png" width="500">
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/sqliburprepeaterfailreply.png" width="500">
 
-Hm, we got an error. The error seems to start at the <code>%<code> character in our exploit. What happens if we replace it in our query with a valid <b>id<b>, something from the dropdown, like so?
+Hm, we got an error. The error seems to start at the <code>%</code> character in our exploit. What happens if we replace it in our query with a valid <b>id</b>, something from the dropdown, like so?
 
 <code>1 or 0=0 union select user, password from dvwa.users #</code>
 
@@ -67,10 +67,10 @@ Our hash pairs are:
   <li>smithy / 5f4dcc3b5aa765d61d8327deb882cf99</li>
 </ul>
 
-We can crack them like before with <code>john</code> to get the passwords:
+We can crack them with <code>john</code>, like before, to get the passwords:
 
 <code>john --wordlist=rockyou.txt --format=Raw-MD5 hashes.txt</code>
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/sqlihashescracked.png" width="500">
 
-The cracked passwords match what we generated before. Challenge complete!
+The cracked passwords match what we found before. Challenge complete!
