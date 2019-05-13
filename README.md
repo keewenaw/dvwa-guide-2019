@@ -27,5 +27,3 @@ Any questions, comments, concerns? Let me know. Have fun!
 -Mark
 <br>
 Twitter: @keewenaw
-
-<i>If you like what I'm doing, Bitcoin donations are happily accepted. My BTC address is: 3HmsvGZMDsAUnnqwzJWaJ354HQmZAYFbNL . No pressure though!</i>
