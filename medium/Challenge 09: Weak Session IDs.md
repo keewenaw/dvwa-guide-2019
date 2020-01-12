@@ -4,17 +4,17 @@
 <br>
 <b>Tools needed:</b> None
 <br><br>
-<i>Did you remember to read this section's <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/README.md" target="_blank">README</a>?</i>
+<i>Did you remember to read this section's <a href="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/medium/README.md" target="_blank">README</a>?</i>
 
 <h2><b>The Guide</b></h2>
 
-<i>Since this challenge is very similar to the easy mode challenge, I'd highly recommend re-reading <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/Challenge%2009:%20Weak%20Session%20IDs.md" target="_blank">our notes from before</a>. We'll be using a lot of the analysis and code from before.</i>
+<i>Since this challenge is very similar to the easy mode challenge, I'd highly recommend re-reading <a href="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/Challenge%2009:%20Weak%20Session%20IDs.md" target="_blank">our notes from before</a>. We'll be using a lot of the analysis and code from before.</i>
 
 <h3><b>What's Changed</b></h3>
 
 So let's click the "generate" button a few times, then analyse <b>dvwaSession</b>:
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/weakcookie.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/medium/screenshots/weakcookie.png" width="500">
 
 Even without viewing the source, this number format will look familiar to any experienced *nix user - it's Unix time! It doesn't appear to have any further parameters, so let's run our generated cookie values though an <a href="https://www.epochconverter.com/" target="_blank">epoch time converter</a> and view the result:
 
@@ -42,7 +42,7 @@ Even without viewing the source, this number format will look familiar to any ex
 
 That does indeed match up with the times I clicked the button! Upon reviewing the source code, our intuition is verified:
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/weaksource.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/medium/screenshots/weaksource.png" width="500">
 
 In the real world, predicting other users' cookies becomes a lot more difficult in most circumstances. We'll need to know the exact time they logged on, in order to convert that time into Unix time and steal their session. Or we'd have to find a way to kick a user off their session, then allow them to log in at a time we already know.
 
