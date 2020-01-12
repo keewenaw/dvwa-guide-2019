@@ -4,11 +4,11 @@
 <br>
 <b>Tools needed:</b> Burp Suite (optional)
 <br><br>
-<i>Did you remember to read this section's <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/README.md" target="_blank">README</a>?</i>
+<i>Did you remember to read this section's <a href="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/medium/README.md" target="_blank">README</a>?</i>
 
 <h2><b>The Guide</b></h2>
 
-<i>Since this challenge is very similar to the easy mode challenge, I'd highly recommend re-reading <a href="hhttps://github.com/keewenaw/dvwa-guide-2019/blob/master/low/Challenge%2013:%20CSP%20Bypass.md" target="_blank">our notes from before</a>. We'll be using a lot of the analysis and code from before.</i>
+<i>Since this challenge is very similar to the easy mode challenge, I'd highly recommend re-reading <a href="hhttps://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/Challenge%2013:%20CSP%20Bypass.md" target="_blank">our notes from before</a>. We'll be using a lot of the analysis and code from before.</i>
 
 <h3><b>What's Changed</b></h3>
 
@@ -26,6 +26,6 @@ One more thing to check is if the nonce value changes. Without viewing the sourc
 
 If we try that payload, we see the expected message in our console!
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/cspsuccess.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/medium/screenshots/cspsuccess.png" width="500">
 
 We can of course replace the payload with an alert bubble, malicious script, or anything else. Challenge complete!
