@@ -30,6 +30,6 @@ That means that anything that does not match <code>http&#58;//</code>, <code>htt
 
 And check our <code>netcat</code> listener:
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/ficomplete.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/medium/screenshots/ficomplete.png" width="500">
 
 ... And it really was that easy. Challenge complete!
