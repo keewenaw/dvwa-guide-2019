@@ -4,17 +4,17 @@
 <br>
 <b>Tools needed:</b> A temporary web server
 <br><br>
-<i>Did you remember to read this section's <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/README.md" target="_blank">README</a>?</i>
+<i>Did you remember to read this section's <a href="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/medium/README.md" target="_blank">README</a>?</i>
 
 <h2><b>The Guide</b></h2>
 
-<i>Since this challenge is very similar to the easy mode challenge, I'd highly recommend re-reading <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/Challenge%2011:%20XSS%20(Reflected).md" target="_blank">our notes from before</a>. We'll be using a lot of the analysis and code from before.</i>
+<i>Since this challenge is very similar to the easy mode challenge, I'd highly recommend re-reading <a href="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/Challenge%2011:%20XSS%20(Reflected).md" target="_blank">our notes from before</a>. We'll be using a lot of the analysis and code from before.</i>
 
 <h3><b>What's Changed</b></h3>
 
 Let's start by clicking the "View Source" button on the bottom right of the challenge.
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/xssrsource.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/medium/screenshots/xssrsource.png" width="500">
 
 Two things to note here:
 <ul>
@@ -36,6 +36,6 @@ It can't be that easy, can it? Since <code>str_replace()</code> looks for the li
 
 Let's try it out!
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/xssrsuccess.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/medium/screenshots/xssrsuccess.png" width="500">
 
 Cookie stolen and challenge complete!
