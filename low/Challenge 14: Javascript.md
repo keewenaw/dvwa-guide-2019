@@ -4,7 +4,7 @@
 <br>
 <b>Tools needed:</b> None
 <br><br>
-<i>Did you remember to read this section's <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
+<i>Did you remember to read this section's <a href="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
 
 <h2><b>The Guide</b></h2>
 
@@ -12,15 +12,15 @@
 
 We're presented with a simple form, pre-filled with the string "ChangeMe". 
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/jsform.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/jsform.png" width="500">
 
 Well, why don't we do the obvious and try submitting "success"?
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/jsformtestfail.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/jsformtestfail.png" width="500">
 
 Hm, no luck. We do get a useful error that states "Invalid token". So that means the form must be defining and setting a token in some manner. Let's examine the source code and see what we can find out. Inspect the form by right-clicking it and selecting "Inspect Element". 
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/jssource.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/jssource.png" width="500">
 
 Okay, we can notice two things:
 <ol type="1">
@@ -106,11 +106,11 @@ We can then go back to our form and open up the Firefox developer console by pre
 
 <code>document.getElementById("token").value = "38581812b435834ebf84ebcc2c6424d6"</code>
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/jssettoken.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/jssettoken.png" width="500">
 
 Then submit the form with the word "success":
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/jssuccess.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/jssuccess.png" width="500">
 
 We got the success message! 
 
