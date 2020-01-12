@@ -4,7 +4,7 @@
 <br>
 <b>Tools needed:</b> Burp Suite (optional)
 <br><br>
-<i>Did you remember to read this section's <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
+<i>Did you remember to read this section's <a href="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
 
 <h2><b>The Guide</b></h2>
 
@@ -12,11 +12,11 @@
 
 We'll begin this challenge the standard way, by examining the form and testing its functionality.
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/csrfform.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/csrfform.png" width="500">
 
 Let's try changing our password to "newpw":
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/csrftest.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/csrftest.png" width="500">
 
 Interesting, there's no real verification required. We don't need to know the old password or otherwise confirm that we actually wanted to change it, at least on the form. 
 
@@ -38,15 +38,15 @@ The attack is actually trivial to implement. All we need to do is craft a new UR
 
 If we can get the "admin" user to visit the malicious URL, the password will be changed to whatever we want. We don't need to actually type in anything to the vulnerable form.
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/csrfattack.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/csrfattack.png" width="500">
 
 Note the URL in the screenshot, where I changed the password to "hackedpassword" successfully. We can verify by logging out ...
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/csrflogout.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/csrflogout.png" width="500">
 
 And logging back in with the hacked password ...
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/csrflogin.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/csrflogin.png" width="500">
 
 It works! Challenge complete.
 
