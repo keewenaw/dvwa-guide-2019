@@ -24,7 +24,7 @@ So let's grab a XSS exploit that doesn't use the <code>&#60;script</code> tag. O
 
 Let's start by initializing our temporary Kali web server, then by trying to execute the payload as shown above:
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/screenshots/xssdfail.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/medium/screenshots/xssdfail.png" width="500">
 
 Hm, the URL doesn't change, nor do we see a call to our payload on our webserver. What could be the cause? Let's look at how our dropdown is constructed:
 
