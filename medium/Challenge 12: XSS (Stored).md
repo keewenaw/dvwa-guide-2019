@@ -16,7 +16,7 @@ Let's start by clicking the "View Source" button on the bottom right of the chal
 
 <img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/medium/screenshots/xssssource.png" width="500">
 
-We see that our former attack vector, the "Message" field, has been locked down pretty well, with multiple functions for input sanitization. However, the "Name" field didn't get the same treatment, only being subjected to a simple, case-sensitive removal of <code>&#60;script&#62;</code>. <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/medium/Challenge%2011:%20XSS%20(Reflected).md" target="_blank">Sound familiar</a>?
+We see that our former attack vector, the "Message" field, has been locked down pretty well, with multiple functions for input sanitization. However, the "Name" field didn't get the same treatment, only being subjected to a simple, case-sensitive removal of <code>&#60;script&#62;</code>. <a href="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/medium/Challenge%2011:%20XSS%20(Reflected).md" target="_blank">Sound familiar</a>?
 
 <h3><b>Crafting a New Exploit</b></h3>
 
