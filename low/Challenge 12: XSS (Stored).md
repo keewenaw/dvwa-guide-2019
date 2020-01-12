@@ -4,7 +4,7 @@
 <br>
 <b>Tools needed:</b> A temporary web server
 <br><br>
-<i>Did you remember to read this section's <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
+<i>Did you remember to read this section's <a href="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
 
 <h2><b>The Guide</b></h2>
 
@@ -12,21 +12,21 @@
 
 Okay, let's start in the normal place, the provided form:
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xsssform.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/xsssform.png" width="500">
 
 This form has two input fields, "Name" and "Message". Upon clicking the "Sign Guestbook" button, the two fields get echoed below the form:
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xssstest.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/xssstest.png" width="500">
 
 So let's do a proof-of-concept XSS test as such:
 
 <code>&#60;script&#62;alert("XSS Message Field")&#60;/script&#62;</code>
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xssstestalert.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/xssstestalert.png" width="500">
 
 We could in theory test the "Name" field as well, but the code snippet above gets truncated. When we inspect the source code, we see why - the form restricts "Name" input to 10 characters and "Message" input to 50 characters.
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xssstestsource.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/xssstestsource.png" width="500">
 
 This may present some hiccups going forward, but right now, it basically means we will only exploit the XSS vulnerability in the "Message" field.
 
@@ -62,18 +62,18 @@ With this setup, your exploit should be around 48 characters in length, give or 
 
 Let's go back to the form and try it out! For "Name", put anything you want, like "test". For "Message", input our shortened exploit.
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xsssexploit.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/xsssexploit.png" width="500">
 
 Inspecting the new guestbook entry (Right-click > "Inspect Element") and reviewing the source code shows us that we successfully inserted the malicious script into our web page:
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xsssexploitsource.png" width="700">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/xsssexploitsource.png" width="700">
 
 Looking at the Python web server shows a successful attempt to retrieve our payload:
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xsssexploitweb.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/xsssexploitweb.png" width="500">
 
 And if we refresh the page and click through the Firefox warning, we can confirm we get redirected to http://www.google.com/ as we wanted!
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/xsssexploitsuccess.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/xsssexploitsuccess.png" width="500">
 
 Challenge complete!
