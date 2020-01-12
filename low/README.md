@@ -1,5 +1,5 @@
 # README for DVWA, "Low" Security Setting
-<i>If you haven't already, please review my terms and conditions <a href=https://github.com/keewenaw/dvwa-guide-2019/blob/master/README.md target="_blank">here</a>.</i>
+<i>If you haven't already, please review my terms and conditions <a href=https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/README.md target="_blank">here</a>.</i>
 <br><br>
 This folder is for the "easy mode" challenges, where the app's Security Level is set to "low". This means that there are no security measures in place at all. You can set this in <b>/dvwa/security.php</b>.
 <br><br>
