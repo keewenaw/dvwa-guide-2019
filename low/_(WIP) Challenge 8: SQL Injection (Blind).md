@@ -4,7 +4,7 @@
 <br>
 <b>Tools needed:</b> None
 <br><br>
-<i>Did you remember to read this section's <a href="https://github.com/mrudy/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
+<i>Did you remember to read this section's <a href="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/README.md">README</a>?</i>
 
 <h2><b>The Guide</b></h2>
 
@@ -14,15 +14,15 @@ THIS IS A WORK IN PROGRESS, TO BE COMPLETED LATER.
 
 Here's our form:
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/sqlibform.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/sqlibform.png" width="500">
 
-We know from the related <a href="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/Challenge%2007:%20SQL%20Injection.md" target="_blank">Challenge 7</a> that there are five user IDs: 1, 2, 3, 4, and 5. So let's test the form by inputting "1":
+We know from the related <a href="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/Challenge%2007:%20SQL%20Injection.md" target="_blank">Challenge 7</a> that there are five user IDs: 1, 2, 3, 4, and 5. So let's test the form by inputting "1":
 
 <img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/sqlibtestt.png" width="500">
 
 Now just for fun, let's try a user ID that we know doesn't exist, like "6".
 
-<img src="https://github.com/keewenaw/dvwa-guide-2019/blob/master/low/screenshots/sqlibtestf2.png" width="500">
+<img src="https://github.com/mrudnitsky/dvwa-guide-2019/blob/master/low/screenshots/sqlibtestf2.png" width="500">
 
 So we get a message of "User ID exists in the database." for valid, "true" entries, and "User ID is MISSING from the database." for invalid, "false" entries. 
 
